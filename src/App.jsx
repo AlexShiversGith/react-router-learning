@@ -4,8 +4,10 @@ import { RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home'
 import About from './pages/About'
-import Categories from './pages/Categories'
+import Category from './pages/Category'
+import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
+import NotFound from './pages/NotFound'
 
 /* const router = createBrowserRouter([
   {
@@ -48,12 +50,20 @@ const router = createBrowserRouter([
         element: <About />
       },
       {
-        path: '/categories',
-        element: <Categories />
+        path: '/category/:id',
+        element: <Category />
+      },
+      {
+        path: '/product/:name',
+        element: <ProductDetails />
       },
       {
         path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '*',
+        element: <NotFound />
       }
     ]
   }
