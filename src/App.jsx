@@ -9,6 +9,7 @@ import Category from './pages/Category'
 import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
 import NotFound from './pages/NotFound'
+import Thanks from './pages/Thanks';
 
 /* const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '/thanks',
+        element: <Thanks />
       },
       {
         path: '*',

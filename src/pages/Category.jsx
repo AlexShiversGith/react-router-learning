@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { products } from "../data/data"
 import { NavLink, Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
@@ -6,14 +6,19 @@ import { useSearchParams } from "react-router-dom";
 function Category() {
 
   const [searchParams, setSearchParams] = useSearchParams()
-  const filter = searchParams.get('cost') || ''
+  const location = useLocation()
+  const filter = searchParams.get('cost') || location.state.filter //geting user input
   const currentCategory = useParams()
+  console.log(location);
 
+  //input listener
   const filterHandler = (e) => {setSearchParams({cost: e.target.value})}
   console.log(currentCategory);
 
+  //filter pruducts array by target category
   const currentCategoryItems = products.filter(item => item.categoryId.toLowerCase() === currentCategory.id.toLowerCase())
 
+  //filter category array by max cost 
   const filteredCategoryItems = currentCategoryItems.filter(item => item.price <= filter)
 
   return (
@@ -23,6 +28,7 @@ function Category() {
     <input type="number" placeholder="Enter cost" onChange={filterHandler}/>
     <label htmlFor="">Max cost: {filter}</label>
    </div>
+
    <ul style={{display: 'flex', flexWrap: 'wrap', gap: '20px'}}>
       { filter == "" ? (
           currentCategoryItems.map(item => <li key={item.id} style={{textDecoration: 'none'}}>

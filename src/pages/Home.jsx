@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { categories } from '../data/data'
 import { useSearchParams } from 'react-router-dom'
 
@@ -6,6 +6,8 @@ function Home() {
   const [searchParams, setSearchParams] = useSearchParams()
   const inputValue = searchParams.get('item') || ""
   const inputChangeHandler = (e) => setSearchParams({item: e.target.value})
+  const location = useLocation()
+
 
   return (
     <div>
@@ -19,7 +21,7 @@ function Home() {
         <ul style={{display: 'flex', gap: '20px'}}>
           {categories.map(item => (
             <li key={item.id}>
-              <Link to={`/category/${item.id.toLowerCase()}`}>
+              <Link to={`/category/${item.id.toLowerCase()}`} state={{filter: 600}}>
                 {item.name}
                 <img src={item.img} alt={item.name} style={{width: '150px'}}/>
               </Link>
